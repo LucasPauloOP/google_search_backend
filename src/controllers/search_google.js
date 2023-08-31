@@ -41,7 +41,7 @@ const getUrls = (urlsArray, children) => {
                     (item.attributes || []).find(attribute => attribute.key === 'href' && attribute.value.includes('/url?'))
                 )
                 const hrefAttribute = (childrenWithHrefAttribute.attributes || []).find(attribute => attribute.key === 'href' && attribute.value.includes('/url?'))
-                urlsArray.push(hrefAttribute.value.split('?q=')[1]);
+                urlsArray.push(hrefAttribute.value.split('?q=')[1].split('&amp')[0]);
             } else if (((itemChildren || {children: []}).children || []).length) {
                 getUrls(urlsArray, (itemChildren || {children: []}).children)
             }
@@ -79,7 +79,8 @@ module.exports = {
                 params: {
                     q: search.trim().replaceAll(' ', '+'),
                     start
-                }
+                },
+                headers: { 'content-type': 'charset=UTF-8' },
             });
 
             fs.writeFileSync('teste.html', requestResponse.data, {encoding: 'utf-8'});
