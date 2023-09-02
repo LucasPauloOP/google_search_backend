@@ -79,7 +79,7 @@ module.exports = {
 
             const requestResponse = await axios.get(baseUrl, {
                 params: {
-                    q: (search || '').trim().replaceAll(' ', '+'),
+                    q: ((search || '').trim() || '').replace(/ /g, '+'),
                     start: start ? start : 0
                 },
                 headers: { 'content-type': 'charset=UTF-8' },
