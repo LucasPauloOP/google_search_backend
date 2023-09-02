@@ -75,10 +75,12 @@ module.exports = {
             const baseUrl = "https://www.google.com/search";
             const {search, start} = request.query;
 
+            if (!search) return response.status(403).json({message: 'Favor digitar um valor para pesquisa'});
+
             const requestResponse = await axios.get(baseUrl, {
                 params: {
-                    q: search.trim().replaceAll(' ', '+'),
-                    start
+                    q: (search || '').trim().replaceAll(' ', '+'),
+                    start: start ? start : 0
                 },
                 headers: { 'content-type': 'charset=UTF-8' },
             });
