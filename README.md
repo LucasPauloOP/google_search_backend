@@ -13,3 +13,6 @@ Instruções para instalação para poder rodar este projeto será necessário r
 #  Para rodar o projeto pelo terminal
    * Entre no projeto e rode o comando npm i
    * E por fim use o comando npm run start para estar inciiando o projeto
+
+# URL de teste do projeto
+* https://search-google-backend.onrender.com
